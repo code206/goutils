@@ -1,4 +1,4 @@
-module goutils
+module github.com/code206/goutils
 
 go 1.18
 
