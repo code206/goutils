@@ -44,6 +44,10 @@ type server struct {
 
 // 启动
 func Start(conf *Config) error {
+	if conf.Server == nil || conf.Server.Handler == nil {
+		panic("Invalid fasthttp server")
+	}
+
 	serv := new(server)
 
 	if conf.Network == "tcp" || conf.Network == "tcp4" || conf.Network == "tcp6" {
