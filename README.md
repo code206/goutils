@@ -11,11 +11,13 @@ Go一些常用的工具函数收集、实现和整理
 - `fasthttpserver` 启动 fasthttp server 后，可以同时在 ipv4 和 ipv6 地址上监听端口
 - `file` linux 系统中，在不同的文件格式下复制文件
 - `hash` md5，sha1，sha256 散列算法
+- `http` 从 uri 和 args 获取请求参数
 - `math` 绝对值，最大值，最小值
 - `now` 时间精度不敏感时，每秒更新当前时间。避免高频场景中time.Now()的压力
 - `path` 命令行路径，命令名称，文件/文件夹是否存在
 - `slice` 搜索字符串是否和 slice 中对象相匹配
 - `string` 字符字节互转，行分割，字符串截取
+- `xormdb` xorm 引擎初始化
 
 ## Packages
 
@@ -82,6 +84,13 @@ func MD5(s string) string
 func Sha1(s string) string
 // source at hash/sha256.go
 func Sha256(s string) string
+```
+### Http
+
+> Package `github.com/code206/goutils/http`
+```go
+// source at http/parse_uri_args.go
+func ParseUriArgs(uri string) map[string]string
 ```
 
 ### Math
@@ -151,4 +160,12 @@ func S2B(s string) (b []byte)
 func SplitLines(str string) []string
 // source at string/sub_string.go
 func SubString(s string, start, end int) string
+```
+
+### Xormdb
+
+> Package `github.com/code206/goutils/xormdb`
+```go
+// source at xormdb/init_db.go
+func InitDB(conf *Config) (*xorm.Engine, error)
 ```
