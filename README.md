@@ -121,8 +121,9 @@ func NowUnixInit()
 > Package `github.com/code206/goutils/path`
 ```go
 // source at path/cmd_path.go
-func CmdDir() (string, error)
-func CmdName() (string, error)
+func BinDirPath() (string, error)
+func BinName() (string, error)
+func BinDirName() (string, error)
 // source at path/dir_exist.go
 func IsDir(path string) bool
 func HasSubDir(path string) (bool, error)

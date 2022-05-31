@@ -6,20 +6,29 @@ import (
 	"path/filepath"
 )
 
-func CmdDir() (string, error) {
-	CmdDir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+func BinDirPath() (string, error) {
+	BinDirPath, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		return "", err
 	} else {
-		return CmdDir, nil
+		return BinDirPath, nil
 	}
 }
 
-func CmdName() (string, error) {
-	CmdName := filepath.Base(os.Args[0])
-	if CmdName == "" {
-		return "", errors.New("cmd name is empty")
+func BinName() (string, error) {
+	BinName := filepath.Base(os.Args[0])
+	if BinName == "" {
+		return "", errors.New("bin name is empty")
 	} else {
-		return CmdName, nil
+		return BinName, nil
+	}
+}
+
+func BinDirName() (string, error) {
+	BinDirName := filepath.Base(filepath.Dir(os.Args[0]))
+	if BinDirName == "" {
+		return "", errors.New("bin dir name is empty")
+	} else {
+		return BinDirName, nil
 	}
 }
