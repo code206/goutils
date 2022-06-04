@@ -10,13 +10,14 @@ Go一些常用的工具函数收集、实现和整理
 - `fasthttprealip` 从 fasthttp ctx 中获取客户端的请求ip
 - `fasthttpserver` 启动 fasthttp server 后，可以同时在 ipv4 和 ipv6 地址上监听端口
 - `file` linux 系统中，在不同的文件格式下复制文件
+- `goadmin` go-admin中用到的方法
 - `hash` md5，sha1，sha256 散列算法
 - `http` 从 uri 和 args 获取请求参数
+- `inslice` 搜索字符串是否和 slice 中对象相匹配
 - `math` 绝对值，最大值，最小值
 - `now` 时间精度不敏感时，每秒更新当前时间。避免高频场景中time.Now()的压力
 - `path` 命令行路径，命令名称，文件/文件夹是否存在
-- `slice` 搜索字符串是否和 slice 中对象相匹配
-- `string` 字符字节互转，行分割，字符串截取
+- `str` 字符字节互转，行分割，字符串截取
 - `xormdb` xorm 引擎初始化
 
 ## Packages
@@ -72,6 +73,14 @@ func Start(conf *fasthttpserver.Config) error
 ```go
 // source at file/copy.go 可以在不同的文件格式下复制文件
 func Copy(src, dst string) (int64, error)
+```
+
+### GoAdmin
+
+> Package `github.com/code206/goutils/goadmin`
+```go
+// source at goadmin/params-validator.go
+func ParamsValidator(values form.Values, pvr []ParamsValidateRule) error
 ```
 
 ### Hash

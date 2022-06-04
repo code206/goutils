@@ -3,6 +3,7 @@ module github.com/code206/goutils
 go 1.18
 
 require (
+	github.com/GoAdminGroup/go-admin v1.2.23
 	github.com/valyala/fasthttp v1.37.0
 	xorm.io/xorm v1.3.0
 )
