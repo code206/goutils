@@ -1,4 +1,4 @@
-package string
+package str
 
 // rune字符截取
 func SubString(s string, start, end int) string {

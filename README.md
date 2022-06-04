@@ -93,6 +93,17 @@ func Sha256(s string) string
 func ParseUriArgs(uri string) map[string]string
 ```
 
+### InSlice
+
+> Package `github.com/code206/goutils/inslice`
+```go
+// source at slice/in_slice.go
+func InSlice(need string, needSlice []string) bool
+func InSliceEqualFold(need string, needSlice []string) bool
+func InSliceHasPrefix(s string, prefixs []string) bool
+func InSliceHasSuffix(s string, suffixs []string) bool
+```
+
 ### Math
 
 > Package `github.com/code206/goutils/math`
@@ -138,29 +149,20 @@ func PathLinkExist(path string) bool
 func PathLinkNotExist(path string) bool
 ```
 
-### Slice
+### Str
 
-> Package `github.com/code206/goutils/slice`
+> Package `github.com/code206/goutils/str`
 ```go
-// source at slice/in_slice.go
-func InSlice(need string, needSlice []string) bool
-func InSliceEqualFold(need string, needSlice []string) bool
-func InSliceHasPrefix(s string, prefixs []string) bool
-func InSliceHasSuffix(s string, suffixs []string) bool
-```
-
-### String
-
-> Package `github.com/code206/goutils/string`
-```go
-// source at string/b2s.go
+// source at str/b2s.go
 func B2S(b []byte) string
-// source at string/s2b.go
+// source at str/s2b.go
 func S2B(s string) (b []byte)
-// source at string/split_lines.go
+// source at str/split_lines.go
 func SplitLines(str string) []string
-// source at string/sub_string.go
+// source at str/sub_string.go
 func SubString(s string, start, end int) string
+// source at str/strings2interfaces.go
+func stringsToInterfaces(strings []string) []interface{}
 ```
 
 ### Xormdb
