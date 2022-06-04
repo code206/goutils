@@ -1,4 +1,4 @@
-package math
+package mathfunc
 
 func Abs(n int64) int64 {
 	y := n >> 63

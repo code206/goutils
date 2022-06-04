@@ -34,11 +34,11 @@ func (bp *BytePoolCap) Width() (n int)
 func (bp *BytePoolCap) Len() (n int)
 ```
 
-### Compress
+### CompressFunc
 
-> Package `github.com/code206/goutils/compress`
+> Package `github.com/code206/goutils/compressfunc`
 ```go
-// source at compress/gzip.go
+// source at compressfunc/gzip.go
 func GZipBytes(data []byte) ([]byte, error)
 ```
 
@@ -81,24 +81,26 @@ func Copy(src, dst string) (int64, error)
 ```go
 // source at goadmin/params-validator.go
 func ParamsValidator(values form.Values, pvr []ParamsValidateRule) error
+// source at goadmin/move-upload-file.go
+func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error)
 ```
 
-### Hash
+### HashFunc
 
-> Package `github.com/code206/goutils/hash`
+> Package `github.com/code206/goutils/hashfunc`
 ```go
-// source at hash/md5.go
+// source at hashfunc/md5.go
 func MD5(s string) string
-// source at hash/sha1.go
+// source at hashfunc/sha1.go
 func Sha1(s string) string
-// source at hash/sha256.go
+// source at hashfunc/sha256.go
 func Sha256(s string) string
 ```
-### Http
+### HttpFunc
 
-> Package `github.com/code206/goutils/http`
+> Package `github.com/code206/goutils/httpfunc`
 ```go
-// source at http/parse_uri_args.go
+// source at httpfunc/parse_uri_args.go
 func ParseUriArgs(uri string) map[string]string
 ```
 
@@ -113,15 +115,15 @@ func InSliceHasPrefix(s string, prefixs []string) bool
 func InSliceHasSuffix(s string, suffixs []string) bool
 ```
 
-### Math
+### MathFunc
 
-> Package `github.com/code206/goutils/math`
+> Package `github.com/code206/goutils/mathfunc`
 ```go
-// source at math/abs.go
+// source at mathfunc/abs.go
 func Abs(n int64) int64
-// source at math/max.go
+// source at mathfunc/max.go
 func Max(x, y int64) int64
-// source at math/min.go
+// source at mathfunc/min.go
 func Min(x, y int64) int64
 ```
 
@@ -136,22 +138,22 @@ func NowUnixNanoInit()
 func NowUnixInit()
 ```
 
-### Path
+### PathFunc
 
-> Package `github.com/code206/goutils/path`
+> Package `github.com/code206/goutils/pathfunc`
 ```go
-// source at path/cmd_path.go
+// source at pathfunc/cmd_path.go
 func BinDirPath() (string, error)
 func BinName() (string, error)
 func BinDirName() (string, error)
-// source at path/dir_exist.go
+// source at pathfunc/dir_exist.go
 func IsDir(path string) bool
 func HasSubDir(path string) (bool, error)
-// source at path/file_exist.go
+// source at pathfunc/file_exist.go
 func IsFile(path string) bool
 func FileExist(path string) bool
 func FileNotExist(path string) bool
-// source at path/path_exist.go
+// source at pathfunc/path_exist.go
 func PathExist(path string) bool
 func PathNotExist(path string) bool
 func PathLinkExist(path string) bool

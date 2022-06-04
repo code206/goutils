@@ -1,4 +1,4 @@
-package hash
+package hashfunc
 
 import (
 	"crypto/sha1"
