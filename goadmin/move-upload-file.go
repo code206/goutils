@@ -21,7 +21,8 @@ type MoveFuncParam struct {
 	UploadsPath  string   // goadmin默认上传目录
 	Exts         []string // 允许上传的扩展名集合
 	LevelsDirSet []int    // 通过hash字符串生成多级目录的设置
-	PrefixPath   string   // 发布目录绝对路径
+	UrlPrefix    string   // url 前缀
+	PublishPath  string   // 发布目录绝对路径
 }
 
 // move upload file
@@ -49,8 +50,9 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	fileStorePath := filepath.Join(mfp.PrefixPath, levelsDir, hashStr+ext)
-	urlPath := filepath.ToSlash(fileStorePath)
+	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, hashStr+ext)
+	urlPath := filepath.ToSlash(subPath)
+	fileStorePath := filepath.Join(mfp.PublishPath, subPath)
 
 	// 建立目录
 	if err = os.MkdirAll(filepath.Dir(fileStorePath), 0755); err != nil {
