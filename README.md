@@ -73,6 +73,8 @@ func Start(conf *fasthttpserver.Config) error
 ```go
 // source at file/copy.go 可以在不同的文件格式下复制文件
 func Copy(src, dst string) (int64, error)
+// source at file/delete.go 删除文件，可以多个字符拼接地址
+func DeleteFile(elem ...string) error
 ```
 
 ### GoAdmin
