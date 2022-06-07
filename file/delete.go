@@ -13,11 +13,15 @@ func DeleteFile(elem ...string) error {
 	var filePath string
 	switch len(elem) {
 	case 0:
-		return errors.New("path is empty")
+		return errors.New("param is empty")
 	case 1:
 		filePath = elem[0]
 	default:
 		filePath = filepath.Join(elem...)
+	}
+
+	if filePath == "" {
+		return errors.New("path is empty")
 	}
 
 	if pathfunc.IsFile(filePath) {
