@@ -81,6 +81,8 @@ func DeleteFile(elem ...string) error
 
 > Package `github.com/code206/goutils/goadmin`
 ```go
+// source at goadmin/create-data.go
+func CreateData(values form.Values, fields ...string) (dialect.H, error)
 // source at goadmin/params-validator.go
 func ParamsValidator(values form.Values, pvr []ParamsValidateRule) error
 // source at goadmin/move-upload-file.go
