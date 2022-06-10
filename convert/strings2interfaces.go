@@ -1,4 +1,4 @@
-package str
+package convert
 
 func stringsToInterfaces(strings []string) []interface{} {
 	var interfaces = make([]interface{}, len(strings))

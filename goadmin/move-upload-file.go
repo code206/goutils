@@ -5,11 +5,8 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"strconv"
 	"strings"
-	"time"
 
-	"github.com/code206/goutils/hashfunc"
 	"github.com/code206/goutils/inslice"
 	"github.com/code206/goutils/pathfunc"
 
@@ -20,7 +17,9 @@ type MoveFuncParam struct {
 	FieldName    string   // 表单中上传文件字段名称
 	UploadsPath  string   // goadmin默认上传目录
 	Exts         []string // 允许上传的扩展名集合
+	LevelsStr    string   // 要做 level 的字符串
 	LevelsDirSet []int    // 通过hash字符串生成多级目录的设置
+	IdStr        string   // 唯一标识字符串，用作文件名
 	UrlPrefix    string   // url 前缀
 	PublishPath  string   // 发布目录绝对路径
 }
@@ -45,12 +44,11 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 	}
 
 	// 生成保存文件绝对路径 和 存入数据库的url路径
-	hashStr := hashfunc.MD5(strconv.FormatInt(time.Now().UnixNano(), 10) + goadminUploadFile)
-	levelsDir, err := pathfunc.PathLevels(hashStr, mfp.LevelsDirSet)
+	levelsDir, err := pathfunc.PathLevels(mfp.LevelsStr, mfp.LevelsDirSet)
 	if err != nil {
 		return "", err
 	}
-	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, hashStr+ext)
+	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, mfp.IdStr+ext)
 	urlPath := filepath.ToSlash(subPath)
 	fileStorePath := filepath.Join(mfp.PublishPath, subPath)
 
