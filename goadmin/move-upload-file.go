@@ -37,20 +37,10 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 		os.Remove(goadminUploadFile)
 	}()
 
-	// 检查上传文件扩展名是否在允许范围内
-	ext := strings.ToLower(path.Ext(uploadFileName))
-	if !inslice.InSlice(ext, mfp.Exts) {
-		return "", errors.New("file type error")
-	}
-
-	// 生成保存文件绝对路径 和 存入数据库的url路径
-	levelsDir, err := pathfunc.PathLevels(mfp.LevelsStr, mfp.LevelsDirSet)
+	urlPath, fileStorePath, err := GeneratePaths(uploadFileName, mfp)
 	if err != nil {
 		return "", err
 	}
-	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, mfp.IdStr+ext)
-	urlPath := filepath.ToSlash(subPath)
-	fileStorePath := filepath.Join(mfp.PublishPath, subPath)
 
 	// 建立目录
 	if err = os.MkdirAll(filepath.Dir(fileStorePath), 0755); err != nil {
@@ -61,4 +51,22 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 		return "", err
 	}
 	return urlPath, nil
+}
+
+func GeneratePaths(fileName string, mfp *MoveFuncParam) (string, string, error) {
+	// 检查上传文件扩展名是否在允许范围内
+	ext := strings.ToLower(path.Ext(fileName))
+	if !inslice.InSlice(ext, mfp.Exts) {
+		return "", "", errors.New("file type error")
+	}
+
+	// 生成保存文件绝对路径 和 存入数据库的url路径
+	levelsDir, err := pathfunc.PathLevels(mfp.LevelsStr, mfp.LevelsDirSet)
+	if err != nil {
+		return "", "", err
+	}
+	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, mfp.IdStr+ext)
+	urlPath := strings.TrimLeft(filepath.ToSlash(subPath), "/")
+	fileStorePath := filepath.Join(mfp.PublishPath, subPath)
+	return urlPath, fileStorePath, nil
 }

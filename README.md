@@ -42,6 +42,22 @@ func (bp *BytePoolCap) Len() (n int)
 func GZipBytes(data []byte) ([]byte, error)
 ```
 
+### Convert
+
+> Package `github.com/code206/goutils/convert`
+```go
+// source at convert/b2i64.go
+func BytesToInt64(buf []byte) int64
+// source at convert/b2s.go
+func B2S(b []byte) string
+// source at convert/i642b.go
+func Int64ToBytes(i int64) []byte
+// source at convert/s2b.go
+func S2B(s string) (b []byte)
+// source at convert/strings2interfaces.go
+func stringsToInterfaces(strings []string) []interface{}
+```
+
 ### Duration
 
 > Package `github.com/code206/goutils/duration`
@@ -87,6 +103,7 @@ func CreateData(values form.Values, fields ...string) (dialect.H, error)
 func ParamsValidator(values form.Values, pvr []ParamsValidateRule) error
 // source at goadmin/move-upload-file.go
 func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error)
+func GeneratePaths(fileName string, mfp *MoveFuncParam) (string, string, error)
 ```
 
 ### HashFunc
@@ -94,11 +111,14 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error)
 > Package `github.com/code206/goutils/hashfunc`
 ```go
 // source at hashfunc/md5.go
-func MD5(s string) string
+func S2Md5(s string) string
+func B2Md5(b []byte) string
 // source at hashfunc/sha1.go
-func Sha1(s string) string
+func S2Sha1(s string) string
+func B2Sha1(b []byte) string
 // source at hashfunc/sha256.go
-func Sha256(s string) string
+func S2Sha256(s string) string
+func B2Sha256(b []byte) string
 ```
 ### HttpFunc
 
@@ -168,16 +188,10 @@ func PathLinkNotExist(path string) bool
 
 > Package `github.com/code206/goutils/str`
 ```go
-// source at str/b2s.go
-func B2S(b []byte) string
-// source at str/s2b.go
-func S2B(s string) (b []byte)
 // source at str/split_lines.go
 func SplitLines(str string) []string
 // source at str/sub_string.go
 func SubString(s string, start, end int) string
-// source at str/strings2interfaces.go
-func stringsToInterfaces(strings []string) []interface{}
 ```
 
 ### Xormdb
