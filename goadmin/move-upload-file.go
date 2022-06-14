@@ -27,7 +27,7 @@ type FilePathParam struct {
 }
 
 // move upload file
-func (mfp *MoveFuncParam) MoveUploadFile(values form.Values, levelsStr, idStr string) (string, error) {
+func MoveUploadFile(mfp *MoveFuncParam, values form.Values, levelsStr, idStr string) (string, error) {
 	uploadFileName := values.Get(mfp.FieldName) // 获取表单中上传文件字段名称
 	if uploadFileName == "" {                   // 如果表单中上传文件字段名称为空，表示没有上传文件，直接返回
 		return "", nil
@@ -56,7 +56,7 @@ func (mfp *MoveFuncParam) MoveUploadFile(values form.Values, levelsStr, idStr st
 }
 
 // 生成文件地址和对应的 url
-func (fpp *FilePathParam) GeneratePaths(fileName, levelsStr, idStr string) (string, string, error) {
+func GeneratePaths(fpp *FilePathParam, fileName, levelsStr, idStr string) (string, string, error) {
 	// 检查上传文件扩展名是否在允许范围内
 	ext := strings.ToLower(path.Ext(fileName))
 	if len(fpp.Exts) > 0 && !inslice.InSlice(ext, fpp.Exts) {
