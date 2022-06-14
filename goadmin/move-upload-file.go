@@ -39,7 +39,7 @@ func MoveUploadFile(mfp *MoveFuncParam, values form.Values, levelsStr, idStr str
 		os.Remove(goadminUploadFile)
 	}()
 
-	urlPath, fileStorePath, err := mfp.FPP.GeneratePaths(uploadFileName, levelsStr, idStr)
+	urlPath, fileStorePath, err := GeneratePaths(mfp.FPP, uploadFileName, levelsStr, idStr)
 	if err != nil {
 		return "", err
 	}
