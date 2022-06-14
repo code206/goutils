@@ -14,18 +14,20 @@ import (
 )
 
 type MoveFuncParam struct {
-	FieldName    string   // 表单中上传文件字段名称
-	UploadsPath  string   // goadmin默认上传目录
+	FieldName   string // 表单中上传文件字段名称
+	UploadsPath string // goadmin默认上传目录
+	FPP         *FilePathParam
+}
+
+type FilePathParam struct {
 	Exts         []string // 允许上传的扩展名集合
-	LevelsStr    string   // 要做 level 的字符串
 	LevelsDirSet []int    // 通过hash字符串生成多级目录的设置
-	IdStr        string   // 唯一标识字符串，用作文件名
 	UrlPrefix    string   // url 前缀
 	PublishPath  string   // 发布目录绝对路径
 }
 
 // move upload file
-func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
+func (mfp *MoveFuncParam) MoveUploadFile(values form.Values, levelsStr, idStr string) (string, error) {
 	uploadFileName := values.Get(mfp.FieldName) // 获取表单中上传文件字段名称
 	if uploadFileName == "" {                   // 如果表单中上传文件字段名称为空，表示没有上传文件，直接返回
 		return "", nil
@@ -37,7 +39,7 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 		os.Remove(goadminUploadFile)
 	}()
 
-	urlPath, fileStorePath, err := GeneratePaths(uploadFileName, mfp)
+	urlPath, fileStorePath, err := mfp.FPP.GeneratePaths(uploadFileName, levelsStr, idStr)
 	if err != nil {
 		return "", err
 	}
@@ -53,20 +55,21 @@ func MoveUploadFile(values form.Values, mfp *MoveFuncParam) (string, error) {
 	return urlPath, nil
 }
 
-func GeneratePaths(fileName string, mfp *MoveFuncParam) (string, string, error) {
+// 生成文件地址和对应的 url
+func (fpp *FilePathParam) GeneratePaths(fileName, levelsStr, idStr string) (string, string, error) {
 	// 检查上传文件扩展名是否在允许范围内
 	ext := strings.ToLower(path.Ext(fileName))
-	if !inslice.InSlice(ext, mfp.Exts) {
+	if len(fpp.Exts) > 0 && !inslice.InSlice(ext, fpp.Exts) {
 		return "", "", errors.New("file type error")
 	}
 
 	// 生成保存文件绝对路径 和 存入数据库的url路径
-	levelsDir, err := pathfunc.PathLevels(mfp.LevelsStr, mfp.LevelsDirSet)
+	levelsDir, err := pathfunc.PathLevels(levelsStr, fpp.LevelsDirSet)
 	if err != nil {
 		return "", "", err
 	}
-	subPath := filepath.Join(mfp.UrlPrefix, levelsDir, mfp.IdStr+ext)
+	subPath := filepath.Join(fpp.UrlPrefix, levelsDir, idStr+ext)
 	urlPath := strings.TrimLeft(filepath.ToSlash(subPath), "/")
-	fileStorePath := filepath.Join(mfp.PublishPath, subPath)
+	fileStorePath := filepath.Join(fpp.PublishPath, subPath)
 	return urlPath, fileStorePath, nil
 }
