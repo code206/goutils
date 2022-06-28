@@ -184,6 +184,16 @@ func PathLinkExist(path string) bool
 func PathLinkNotExist(path string) bool
 ```
 
+### PC
+
+> Package `github.com/code206/goutils/pc`
+```go
+// source at pc/pc.go
+func NewPool(channelLength int, consumerNumber int, produceFunc func(chan<- interface{}), consumeFunc func(interface{})) *Pool
+// source at pc/pc.go
+func (p *Pool) Run()
+```
+
 ### Str
 
 > Package `github.com/code206/goutils/str`
