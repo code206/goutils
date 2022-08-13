@@ -182,8 +182,9 @@ func PathExist(path string) bool
 func PathNotExist(path string) bool
 func PathLinkExist(path string) bool
 func PathLinkNotExist(path string) bool
-// source at pathfunc/trim_path_ext.go
+// source at pathfunc/path_ext.go
 func TrimPathExt(path string) string
+func CutPathExt(path string) (string, string)
 ```
 
 ### PC
