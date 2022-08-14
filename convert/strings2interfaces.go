@@ -1,6 +1,6 @@
 package convert
 
-func stringsToInterfaces(strings []string) []interface{} {
+func strings2Interfaces(strings []string) []interface{} {
 	var interfaces = make([]interface{}, len(strings))
 
 	for key, v := range strings {

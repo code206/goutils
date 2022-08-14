@@ -55,7 +55,9 @@ func Int64ToBytes(i int64) []byte
 // source at convert/s2b.go
 func S2B(s string) (b []byte)
 // source at convert/strings2interfaces.go
-func stringsToInterfaces(strings []string) []interface{}
+func strings2Interfaces(strings []string) []interface{}
+// source at convert/interface2string.go
+func Interface2String(i interface{}) string
 ```
 
 ### Duration
