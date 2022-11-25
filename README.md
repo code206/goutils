@@ -164,6 +164,24 @@ func NowUnixNanoInit()
 func NowUnixInit()
 ```
 
+### NowUnix
+
+> Package `github.com/code206/goutils/now_unix`
+```go
+// source at now_unix/now.go
+func Now() int64
+func NowTime() time.Time
+```
+
+### NowUnixNano
+
+> Package `github.com/code206/goutils/now_unix_nano`
+```go
+// source at now_unix_nano/now.go
+func Now() int64
+func NowTime() time.Time
+```
+
 ### PathFunc
 
 > Package `github.com/code206/goutils/pathfunc`
