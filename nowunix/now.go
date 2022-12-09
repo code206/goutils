@@ -1,4 +1,4 @@
-package now_unix
+package nowunix
 
 import (
 	"sync/atomic"

@@ -168,18 +168,18 @@ func NowUnixInit()
 
 ### NowUnix
 
-> Package `github.com/code206/goutils/now_unix`
+> Package `github.com/code206/goutils/nowunix`
 ```go
-// source at now_unix/now.go
+// source at nowunix/now.go
 func Now() int64
 func NowTime() time.Time
 ```
 
 ### NowUnixNano
 
-> Package `github.com/code206/goutils/now_unix_nano`
+> Package `github.com/code206/goutils/nowunixnano`
 ```go
-// source at now_unix_nano/now.go
+// source at nowunixnano/now.go
 func Now() int64
 func NowTime() time.Time
 ```
